@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugarberry Motors - Premium Auto Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            line-height: 1.6;
+            padding-top: 140px;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(to right, #000, #222);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-bottom: 4px solid #d32f2f;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+            border: 3px solid #d32f2f;
+            background: white;
+            box-shadow: 0 0 15px rgba(211, 47, 47, 0.5);
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 5px;
+        }
+        
+        .company-name {
+            text-align: left;
+        }
+        
+        .company-name h1 {
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .company-name p {
+            font-size: 1rem;
+            color: #ccc;
+        }
+        
+        .menu ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        .menu ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 10px 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            position: relative;
+        }
+        
+        .menu ul li a:hover {
+            background: #d32f2f;
+            color: white;
+        }
+        
+        .menu ul li a.active {
+            background: #d32f2f;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .hero h2 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero h2 span {
+            color: #d32f2f;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #e0e0e0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #d32f2f;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(211, 47, 47, 0.4);
+            margin-top: 20px;
+            border: 2px solid #fff;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.6);
+            background: #b71c1c;
+        }
+        
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+        
+        .feature-card {
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 2px solid #d32f2f;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #d32f2f;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-card i {
+            font-size: 50px;
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .feature-card p {
+            color: #bbb;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #000, #222);
+            padding: 60px 0 20px;
+            margin-top: 60px;
+            border-top: 4px solid #d32f2f;
+            color: white;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #d32f2f;
+        }
+        
+        .footer-section p, .footer-section li {
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-section ul li i {
+            color: #d32f2f;
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #333;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: #d32f2f;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            body {
+                padding-top: 180px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-container {
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+            
+            .menu ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding-top: 220px;
+            }
+            
+            .logo {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .company-name h1 {
+                font-size: 1.8rem;
+            }
+            
+            .menu ul li a {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+            
+            .hero {
+                padding: 60px 20px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .feature-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo-container">
+                    <div class="logo">
+                        <img src="images/logo2.png" alt="Sugarberry Motors Logo">
+                    </div>
+                    <div class="company-name">
+                        <h1>Sugarberry Motors</h1>
+                        <p>Premium Auto Services Since 2010</p>
+                    </div>
+                </a>
+                
+                <nav class="menu">
+                    <ul>
+                        <li><a href="aboutus.jsp">About Us</a></li>
+                        <li><a href="gallery.jsp">Gallery</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="hero">
+            <h2>Premium Auto <span>Services</span> You Can Trust</h2>
+            <p>Expert vehicle repair and maintenance using genuine OEM parts with warranty on all jobs. Serving government fleets and private clients since 2020.</p>
+            <a href="booking.jsp" class="cta-button">Book Your Service Now</a>
+        </section>
+        
+        <div class="features">
+            <div class="feature-card">
+                <i class="fas fa-cogs"></i>
+                <h3>Genuine Parts</h3>
+                <p>We use only authentic manufacturer parts for optimal performance and longevity of your vehicle.</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-clock"></i>
+                <h3>On-Time Service</h3>
+                <p>We complete all work within or ahead of the agreed timeframe to minimize your downtime.</p>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 13 Beaumont Street, Booysens, JHB, 2091</li>
+                        <li><i class="fas fa-phone"></i> +27 67 786 3886</li>
+                        <li><i class="fas fa-envelope"></i> sugarberrytrd@gmail.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><i class="fas fa-chevron-right"></i> <a href="aboutus.jsp">About Us</a></li>
+                        <li><i class="fas fa-chevron-right"></i> <a href="gallery.jsp">Gallery</a></li>
+                        <li><i class="fas fa-chevron-right"></i> <a href="booking.jsp">Book Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Business Hours</h3>
+                    <ul>
+                        <li><i class="fas fa-calendar-day"></i> Monday - Friday: 8am - 5pm</li>
+                        <li><i class="fas fa-calendar-day"></i> Saturday: 9am - 12pm</li>
+                        <li><i class="fas fa-calendar-times"></i> Sunday: Closed</li>
+                        <li><i class="fas fa-calendar-star"></i> Public Holidays: 9am - 3pm</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Sugarberry Motors. All Rights Reserved. | Established 2010 | Operating Since 2020</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
