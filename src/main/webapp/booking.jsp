@@ -501,7 +501,7 @@ footer {
             </div>
             
             <div class="fee-notice">
-                <p>Note: Only 5 inspections per day available. You'll receive confirmation within 24 hours.</p>
+                <p>Note: You'll receive confirmation within 24 hours.</p>
             </div>
             
             <input type="submit" class="submit-btn" value="Book Inspection">
