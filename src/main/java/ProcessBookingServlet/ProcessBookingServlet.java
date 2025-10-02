@@ -40,11 +40,11 @@ public class ProcessBookingServlet extends HttpServlet {
         try (InputStream input = getClass().getClassLoader().getResourceAsStream("mail.properties")) {
             if (input != null) {
                 mailProps.load(input);
-                EMAIL_HOST = mailProps.getProperty("mail.host", "smtp.gmail.com");
+                EMAIL_HOST = mailProps.getProperty("mail.host", "smtp-mail.outlook.com");
                 EMAIL_PORT = mailProps.getProperty("mail.port", "587");
-                EMAIL_USERNAME = mailProps.getProperty("mail.username", "your-email@gmail.com");
-                EMAIL_PASSWORD = mailProps.getProperty("mail.password", "your-app-password");
-                COMPANY_EMAIL = mailProps.getProperty("mail.company", "sugarberrytrd@gmail.com");
+                EMAIL_USERNAME = mailProps.getProperty("mail.username", "your-email@outlook.com");
+                EMAIL_PASSWORD = mailProps.getProperty("mail.password", "your-password");
+                COMPANY_EMAIL = mailProps.getProperty("mail.company", "your-email@outlook.com");
                 
                 System.out.println("Email configuration loaded successfully:");
                 System.out.println("Host: " + EMAIL_HOST);
@@ -52,22 +52,20 @@ public class ProcessBookingServlet extends HttpServlet {
                 System.out.println("Username: " + EMAIL_USERNAME);
                 System.out.println("Company Email: " + COMPANY_EMAIL);
             } else {
-                // Set default values if properties file doesn't exist
                 System.err.println("mail.properties file not found! Using default values.");
-                EMAIL_HOST = "smtp.gmail.com";
+                EMAIL_HOST = "smtp-mail.outlook.com";
                 EMAIL_PORT = "587";
-                EMAIL_USERNAME = "your-email@gmail.com";
-                EMAIL_PASSWORD = "your-app-password";
-                COMPANY_EMAIL = "sugarberrytrd@gmail.com";
+                EMAIL_USERNAME = "your-email@outlook.com";
+                EMAIL_PASSWORD = "your-password";
+                COMPANY_EMAIL = "your-email@outlook.com";
             }
         } catch (IOException e) {
             System.err.println("Failed to load email configuration: " + e.getMessage());
-            // Set default values on error
-            EMAIL_HOST = "smtp.gmail.com";
+            EMAIL_HOST = "smtp-mail.outlook.com";
             EMAIL_PORT = "587";
-            EMAIL_USERNAME = "your-email@gmail.com";
-            EMAIL_PASSWORD = "your-app-password";
-            COMPANY_EMAIL = "sugarberrytrd@gmail.com";
+            EMAIL_USERNAME = "your-email@outlook.com";
+            EMAIL_PASSWORD = "your-password";
+            COMPANY_EMAIL = "your-email@outlook.com";
         }
     }
     
@@ -178,8 +176,7 @@ public class ProcessBookingServlet extends HttpServlet {
             }
         }
     }
-    
-    // Send confirmation email to customer
+  
     // Send confirmation email to customer
     private void sendCustomerConfirmation(String customerEmail, String fullName, 
                                         String bookingDate, String timeSlot) {
@@ -188,16 +185,18 @@ public class ProcessBookingServlet extends HttpServlet {
             System.out.println("Using SMTP host: " + EMAIL_HOST + ":" + EMAIL_PORT);
             System.out.println("Authenticating as: " + EMAIL_USERNAME);
 
-            // Email properties
+            // Email properties for Outlook
             Properties props = new Properties();
             props.put("mail.smtp.host", EMAIL_HOST);
             props.put("mail.smtp.port", EMAIL_PORT);
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.connectiontimeout", "10000"); // 10 seconds
-            props.put("mail.smtp.timeout", "10000"); // 10 seconds
-            props.put("mail.smtp.writetimeout", "10000"); // 10 seconds
-            props.put("mail.debug", "true"); // Enable debug mode
+            props.put("mail.smtp.starttls.required", "true");
+            props.put("mail.smtp.connectiontimeout", "10000");
+            props.put("mail.smtp.timeout", "10000");
+            props.put("mail.smtp.writetimeout", "10000");
+            props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+            props.put("mail.debug", "true");
 
             // Create session with authentication
             Session session = Session.getInstance(props, new Authenticator() {
@@ -254,15 +253,17 @@ public class ProcessBookingServlet extends HttpServlet {
                                        String vehicleModel, int vehicleYear, String problemDesc,
                                        String bookingDate, String timeSlot) {
         try {
-            // Email properties
+            // Email properties for Outlook
             Properties props = new Properties();
             props.put("mail.smtp.host", EMAIL_HOST);
             props.put("mail.smtp.port", EMAIL_PORT);
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.connectiontimeout", "5000");
-            props.put("mail.smtp.timeout", "5000");
-            props.put("mail.smtp.writetimeout", "5000");
+            props.put("mail.smtp.starttls.required", "true");
+            props.put("mail.smtp.connectiontimeout", "10000");
+            props.put("mail.smtp.timeout", "10000");
+            props.put("mail.smtp.writetimeout", "10000");
+            props.put("mail.smtp.ssl.protocols", "TLSv1.2");
             
             // Create session with authentication
             Session session = Session.getInstance(props, new Authenticator() {
